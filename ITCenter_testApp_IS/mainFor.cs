@@ -25,29 +25,21 @@ namespace ITCenter_testApp_IS
         {
             log.Info("mainFor_Load()");
 
-            dataGridViewDoki.DataSource = DAO.p_int_dokument_pobierz(null);
+            log.Info("Api.GetAppInfo()");
+            var app_data = Api.GetAppInfo();
+
+            lblAppData.Text = "RepoName:" + app_data.Name;
+            lblAppData.Text += Environment.NewLine + "Owner:" + app_data.Owner.Login;
+            lblAppData.Text += Environment.NewLine + "Created at:" + app_data.CreatedAt.ToString("yyyy-MM-dd");
+            lblAppData.Text += Environment.NewLine + "Ocena:" + app_data.StargazersCount;
+
+            //dataGridViewDoki.DataSource = DAO.p_int_dokument_pobierz(null);
             //gridControlDoki.DataSource = DAO.p_int_dokument_pobierz(null);
         }
 
-        private void btnAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-
-            log.Info("btnAdd_ItemClick()");
-
-            var new_dok = new p_int_dokument_pobierz();
-            
-            new_dok.do_cena_brutto = do_cena_bruttoSpinEdit.Value;
-            new_dok.do_cena_netto = do_cena_nettoSpinEdit.Value;
-            new_dok.do_data = do_dataDateEdit.DateTime;
-            new_dok.do_nazwa = do_nazwaTextEdit.Text;
-            new_dok.do_numer_klienta = do_numer_klientaTextEdit.Text;
-
-            //gridControlDoki.DataSource = DAO.p_int_dokument_dodaj(new_dok);
-        }
-
-        private void btnDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if(XtraMessageBox.Show("Na pewno chcesz usunąć dane?","Uwaga",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            if (XtraMessageBox.Show("Na pewno chcesz usunąć dane?", "Uwaga", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {
@@ -59,7 +51,7 @@ namespace ITCenter_testApp_IS
                     //gridControlDoki.DataSource  = DAO.p_int_dokument_usun(f.do_id.ToString());
 
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     log.Error(ex.InnerException);
                 }
@@ -67,11 +59,37 @@ namespace ITCenter_testApp_IS
             }
         }
 
-        private void dataGridViewDoki_SelectionChanged(object sender, EventArgs e)
+        private void btnNew_Click(object sender, EventArgs e)
         {
-            var f = sender as DataGridView;
-            
-            dataGridViewArtykul.DataSource = DAO.p_int_artykul_pobierz(2);
+            log.Info("btnAdd_ItemClick()");
+
+            var new_dok = new p_int_dokument_pobierz();
+            /*
+            new_dok.do_cena_brutto = do_cena_bruttoSpinEdit.Value;
+            new_dok.do_cena_netto = do_cena_nettoSpinEdit.Value;
+            new_dok.do_data = do_dataDateEdit.DateTime;
+            new_dok.do_nazwa = do_nazwaTextEdit.Text;
+            new_dok.do_numer_klienta = do_numer_klientaTextEdit.Text;
+            */
+            //gridControlDoki.DataSource = DAO.p_int_dokument_dodaj(new_dok);
+        }
+
+        private void labelControl2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCallApi_Click(object sender, EventArgs e)
+        {
+            var user = txtUserName.Text;
+
+            log.Info("Api.GetUserInfo: " + user);
+            var wynik = Api.GetUserInfo(user);
+
+            lblApiWynik.Text = wynik.Result.Login;
+            lblApiWynik.Text += Environment.NewLine + "Followers: " + wynik.Result.Followers;
+            lblApiWynik.Text += Environment.NewLine + "Following: " + wynik.Result.Following;
+            lblApiWynik.Text += Environment.NewLine + "CreatedAt: " + wynik.Result.CreatedAt.Date.ToString("yyyy-MM-dd");
         }
     }
 }
