@@ -103,3 +103,5 @@ D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\obj\Debug\ITCenter_te
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\log4net.dll
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\log4net.xml
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\log4net.config
+D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\Octokit.dll
+D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\Octokit.xml
