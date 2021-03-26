@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="col_dataModelStoreContainer" CdmEntityContainer="col_dataEntities">
+    <EntitySetMapping Name="artykul">
+      <EntityTypeMapping TypeName="col_dataModel.artykul">
+        <MappingFragment StoreEntitySet="artykul">
+          <ScalarProperty Name="ar_id" ColumnName="ar_id" />
+          <ScalarProperty Name="ar_nazwa" ColumnName="ar_nazwa" />
+          <ScalarProperty Name="ar_liczba" ColumnName="ar_liczba" />
+          <ScalarProperty Name="ar_cena_netto" ColumnName="ar_cena_netto" />
+          <ScalarProperty Name="ar_cena_brutto" ColumnName="ar_cena_brutto" />
+          <ScalarProperty Name="ar_aud_data" ColumnName="ar_aud_data" />
+          <ScalarProperty Name="ar_aud_login" ColumnName="ar_aud_login" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dokument_artykul">
+      <EntityTypeMapping TypeName="col_dataModel.dokument_artykul">
+        <MappingFragment StoreEntitySet="dokument_artykul">
+          <ScalarProperty Name="nar_id" ColumnName="nar_id" />
+          <ScalarProperty Name="nar_ar_id" ColumnName="nar_ar_id" />
+          <ScalarProperty Name="nar_do_id" ColumnName="nar_do_id" />
+          <ScalarProperty Name="nar_aud_data" ColumnName="nar_aud_data" />
+          <ScalarProperty Name="nar_aud_login" ColumnName="nar_aud_login" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dokument_naglowek">
+      <EntityTypeMapping TypeName="col_dataModel.dokument_naglowek">
+        <MappingFragment StoreEntitySet="dokument_naglowek">
+          <ScalarProperty Name="do_id" ColumnName="do_id" />
+          <ScalarProperty Name="do_nazwa" ColumnName="do_nazwa" />
+          <ScalarProperty Name="do_data" ColumnName="do_data" />
+          <ScalarProperty Name="do_numer_klienta" ColumnName="do_numer_klienta" />
+          <ScalarProperty Name="do_cena_netto" ColumnName="do_cena_netto" />
+          <ScalarProperty Name="do_cena_brutto" ColumnName="do_cena_brutto" />
+          <ScalarProperty Name="do_aud_data" ColumnName="do_aud_data" />
+          <ScalarProperty Name="do_aud_login" ColumnName="do_aud_login" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="p_int_artkul_dodaj" FunctionName="col_dataModel.Store.p_int_artkul_dodaj" />
+    <FunctionImportMapping FunctionImportName="p_int_artkul_update" FunctionName="col_dataModel.Store.p_int_artkul_update" />
+    <FunctionImportMapping FunctionImportName="p_int_artkul_usun" FunctionName="col_dataModel.Store.p_int_artkul_usun" />
+    <FunctionImportMapping FunctionImportName="p_int_dokument_artkul_dodaj" FunctionName="col_dataModel.Store.p_int_dokument_artkul_dodaj" />
+    <FunctionImportMapping FunctionImportName="p_int_dokument_artykul_pobierz" FunctionName="col_dataModel.Store.p_int_dokument_artykul_pobierz">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="col_dataModel.p_int_dokument_artykul_pobierz_Result">
+          <ScalarProperty Name="do_id" ColumnName="do_id" />
+          <ScalarProperty Name="ar_id" ColumnName="ar_id" />
+          <ScalarProperty Name="ar_nazwa" ColumnName="ar_nazwa" />
+          <ScalarProperty Name="ar_liczba" ColumnName="ar_liczba" />
+          <ScalarProperty Name="ar_cena_brutto" ColumnName="ar_cena_brutto" />
+          <ScalarProperty Name="ar_cena_netto" ColumnName="ar_cena_netto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="p_int_dokument_dodaj" FunctionName="col_dataModel.Store.p_int_dokument_dodaj" />
+    <FunctionImportMapping FunctionImportName="p_int_dokument_pobierz" FunctionName="col_dataModel.Store.p_int_dokument_pobierz">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="col_dataModel.p_int_dokument_pobierz_Result">
+          <ScalarProperty Name="do_id" ColumnName="do_id" />
+          <ScalarProperty Name="do_nazwa" ColumnName="do_nazwa" />
+          <ScalarProperty Name="do_numer_klienta" ColumnName="do_numer_klienta" />
+          <ScalarProperty Name="do_cena_brutto" ColumnName="do_cena_brutto" />
+          <ScalarProperty Name="do_cena_netto" ColumnName="do_cena_netto" />
+          <ScalarProperty Name="do_data" ColumnName="do_data" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="p_int_dokument_update" FunctionName="col_dataModel.Store.p_int_dokument_update" />
+    <FunctionImportMapping FunctionImportName="p_int_dokument_usun" FunctionName="col_dataModel.Store.p_int_dokument_usun" />
+  </EntityContainerMapping>
+</Mapping>

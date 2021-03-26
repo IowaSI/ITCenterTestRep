@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="col_dataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="artykul">
+          <Key>
+            <PropertyRef Name="ar_id" />
+          </Key>
+          <Property Name="ar_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ar_nazwa" Type="nvarchar(max)" />
+          <Property Name="ar_liczba" Type="int" />
+          <Property Name="ar_cena_netto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ar_cena_brutto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ar_aud_data" Type="datetime" />
+          <Property Name="ar_aud_login" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="dokument_artykul">
+          <Key>
+            <PropertyRef Name="nar_id" />
+          </Key>
+          <Property Name="nar_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nar_ar_id" Type="int" Nullable="false" />
+          <Property Name="nar_do_id" Type="int" Nullable="false" />
+          <Property Name="nar_aud_data" Type="datetime" />
+          <Property Name="nar_aud_login" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="dokument_naglowek">
+          <Key>
+            <PropertyRef Name="do_id" />
+          </Key>
+          <Property Name="do_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="do_nazwa" Type="nvarchar(max)" />
+          <Property Name="do_data" Type="datetime" />
+          <Property Name="do_numer_klienta" Type="nvarchar(max)" />
+          <Property Name="do_cena_netto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="do_cena_brutto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="do_aud_data" Type="datetime" />
+          <Property Name="do_aud_login" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_nagl_art_artykul">
+          <End Role="artykul" Type="Self.artykul" Multiplicity="1" />
+          <End Role="dokument_artykul" Type="Self.dokument_artykul" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="artykul">
+              <PropertyRef Name="ar_id" />
+            </Principal>
+            <Dependent Role="dokument_artykul">
+              <PropertyRef Name="nar_ar_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nagl_art_dokument">
+          <End Role="dokument_naglowek" Type="Self.dokument_naglowek" Multiplicity="1" />
+          <End Role="dokument_artykul" Type="Self.dokument_artykul" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dokument_naglowek">
+              <PropertyRef Name="do_id" />
+            </Principal>
+            <Dependent Role="dokument_artykul">
+              <PropertyRef Name="nar_do_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="p_int_artkul_dodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_ar_nazwa" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="p_ar_liczba" Type="int" Mode="In" />
+          <Parameter Name="p_ar_cena_br" Type="decimal" Mode="In" />
+          <Parameter Name="p_ar_cena_nt" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="p_int_artkul_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_ar_ids" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="p_ar_cena_brutto" Type="decimal" Mode="In" />
+          <Parameter Name="p_ar_cena_netto" Type="decimal" Mode="In" />
+          <Parameter Name="par_liczba" Type="int" Mode="In" />
+          <Parameter Name="p_ar_nazwa" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="p_int_artkul_usun" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_ar_ids" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="p_int_dokument_artkul_dodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_ar_ids" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="p_do_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="p_int_dokument_artykul_pobierz" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_do_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="p_int_dokument_dodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_do_nazwa" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="p_do_data" Type="datetime" Mode="In" />
+          <Parameter Name="p_do_numer_kl" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="p_do_cena_br" Type="decimal" Mode="In" />
+          <Parameter Name="p_do_cena_nt" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="p_int_dokument_pobierz" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_do_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="p_int_dokument_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_do_ids" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="p_do_cen_br" Type="decimal" Mode="In" />
+          <Parameter Name="p_do_cen_nt" Type="decimal" Mode="In" />
+          <Parameter Name="p_do_nazwa" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="p_do_nr_kli" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="p_do_data" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="p_int_dokument_usun" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_do_ids" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="col_dataModelStoreContainer">
+          <EntitySet Name="artykul" EntityType="Self.artykul" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dokument_artykul" EntityType="Self.dokument_artykul" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dokument_naglowek" EntityType="Self.dokument_naglowek" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_nagl_art_artykul" Association="Self.FK_nagl_art_artykul">
+            <End Role="artykul" EntitySet="artykul" />
+            <End Role="dokument_artykul" EntitySet="dokument_artykul" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nagl_art_dokument" Association="Self.FK_nagl_art_dokument">
+            <End Role="dokument_naglowek" EntitySet="dokument_naglowek" />
+            <End Role="dokument_artykul" EntitySet="dokument_artykul" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="col_dataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="artykul">
+          <Key>
+            <PropertyRef Name="ar_id" />
+          </Key>
+          <Property Name="ar_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ar_nazwa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ar_liczba" Type="Int32" />
+          <Property Name="ar_cena_netto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ar_cena_brutto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ar_aud_data" Type="DateTime" Precision="3" />
+          <Property Name="ar_aud_login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="dokument_artykul" Relationship="Self.FK_nagl_art_artykul" FromRole="artykul" ToRole="dokument_artykul" />
+        </EntityType>
+        <EntityType Name="dokument_artykul">
+          <Key>
+            <PropertyRef Name="nar_id" />
+          </Key>
+          <Property Name="nar_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nar_ar_id" Type="Int32" Nullable="false" />
+          <Property Name="nar_do_id" Type="Int32" Nullable="false" />
+          <Property Name="nar_aud_data" Type="DateTime" Precision="3" />
+          <Property Name="nar_aud_login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="artykul" Relationship="Self.FK_nagl_art_artykul" FromRole="dokument_artykul" ToRole="artykul" />
+          <NavigationProperty Name="dokument_naglowek" Relationship="Self.FK_nagl_art_dokument" FromRole="dokument_artykul" ToRole="dokument_naglowek" />
+        </EntityType>
+        <EntityType Name="dokument_naglowek">
+          <Key>
+            <PropertyRef Name="do_id" />
+          </Key>
+          <Property Name="do_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="do_nazwa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="do_data" Type="DateTime" Precision="3" />
+          <Property Name="do_numer_klienta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="do_cena_netto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="do_cena_brutto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="do_aud_data" Type="DateTime" Precision="3" />
+          <Property Name="do_aud_login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="dokument_artykul" Relationship="Self.FK_nagl_art_dokument" FromRole="dokument_naglowek" ToRole="dokument_artykul" />
+        </EntityType>
+        <Association Name="FK_nagl_art_artykul">
+          <End Role="artykul" Type="Self.artykul" Multiplicity="1" />
+          <End Role="dokument_artykul" Type="Self.dokument_artykul" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="artykul">
+              <PropertyRef Name="ar_id" />
+            </Principal>
+            <Dependent Role="dokument_artykul">
+              <PropertyRef Name="nar_ar_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nagl_art_dokument">
+          <End Role="dokument_naglowek" Type="Self.dokument_naglowek" Multiplicity="1" />
+          <End Role="dokument_artykul" Type="Self.dokument_artykul" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dokument_naglowek">
+              <PropertyRef Name="do_id" />
+            </Principal>
+            <Dependent Role="dokument_artykul">
+              <PropertyRef Name="nar_do_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="col_dataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="artykul" EntityType="Self.artykul" />
+          <EntitySet Name="dokument_artykul" EntityType="Self.dokument_artykul" />
+          <EntitySet Name="dokument_naglowek" EntityType="Self.dokument_naglowek" />
+          <AssociationSet Name="FK_nagl_art_artykul" Association="Self.FK_nagl_art_artykul">
+            <End Role="artykul" EntitySet="artykul" />
+            <End Role="dokument_artykul" EntitySet="dokument_artykul" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nagl_art_dokument" Association="Self.FK_nagl_art_dokument">
+            <End Role="dokument_naglowek" EntitySet="dokument_naglowek" />
+            <End Role="dokument_artykul" EntitySet="dokument_artykul" />
+          </AssociationSet>
+          <FunctionImport Name="p_int_artkul_dodaj">
+            <Parameter Name="p_ar_nazwa" Mode="In" Type="String" />
+            <Parameter Name="p_ar_liczba" Mode="In" Type="Int32" />
+            <Parameter Name="p_ar_cena_br" Mode="In" Type="Decimal" />
+            <Parameter Name="p_ar_cena_nt" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="p_int_artkul_update">
+            <Parameter Name="p_ar_ids" Mode="In" Type="String" />
+            <Parameter Name="p_ar_cena_brutto" Mode="In" Type="Decimal" />
+            <Parameter Name="p_ar_cena_netto" Mode="In" Type="Decimal" />
+            <Parameter Name="par_liczba" Mode="In" Type="Int32" />
+            <Parameter Name="p_ar_nazwa" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="p_int_artkul_usun">
+          <Parameter Name="p_ar_ids" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="p_int_dokument_artkul_dodaj">
+            <Parameter Name="p_ar_ids" Mode="In" Type="String" />
+            <Parameter Name="p_do_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="p_int_dokument_artykul_pobierz" ReturnType="Collection(col_dataModel.p_int_dokument_artykul_pobierz_Result)">
+          <Parameter Name="p_do_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="p_int_dokument_dodaj">
+            <Parameter Name="p_do_nazwa" Mode="In" Type="String" />
+            <Parameter Name="p_do_data" Mode="In" Type="DateTime" />
+            <Parameter Name="p_do_numer_kl" Mode="In" Type="String" />
+            <Parameter Name="p_do_cena_br" Mode="In" Type="Decimal" />
+            <Parameter Name="p_do_cena_nt" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="p_int_dokument_pobierz" ReturnType="Collection(col_dataModel.p_int_dokument_pobierz_Result)">
+          <Parameter Name="p_do_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="p_int_dokument_update">
+            <Parameter Name="p_do_ids" Mode="In" Type="String" />
+            <Parameter Name="p_do_cen_br" Mode="In" Type="Decimal" />
+            <Parameter Name="p_do_cen_nt" Mode="In" Type="Decimal" />
+            <Parameter Name="p_do_nazwa" Mode="In" Type="String" />
+            <Parameter Name="p_do_nr_kli" Mode="In" Type="String" />
+            <Parameter Name="p_do_data" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="p_int_dokument_usun">
+          <Parameter Name="p_do_ids" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="p_int_dokument_artykul_pobierz_Result">
+          <Property Type="Int32" Name="do_id" Nullable="false" />
+          <Property Type="Int32" Name="ar_id" Nullable="false" />
+          <Property Type="String" Name="ar_nazwa" Nullable="true" />
+          <Property Type="Int32" Name="ar_liczba" Nullable="true" />
+          <Property Type="Decimal" Name="ar_cena_brutto" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="ar_cena_netto" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="p_int_dokument_pobierz_Result">
+          <Property Type="Int32" Name="do_id" Nullable="false" />
+          <Property Type="String" Name="do_nazwa" Nullable="true" />
+          <Property Type="String" Name="do_numer_klienta" Nullable="true" />
+          <Property Type="Decimal" Name="do_cena_brutto" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="do_cena_netto" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="do_data" Nullable="true" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="col_dataModelStoreContainer" CdmEntityContainer="col_dataEntities">
+          <EntitySetMapping Name="artykul">
+            <EntityTypeMapping TypeName="col_dataModel.artykul">
+              <MappingFragment StoreEntitySet="artykul">
+                <ScalarProperty Name="ar_id" ColumnName="ar_id" />
+                <ScalarProperty Name="ar_nazwa" ColumnName="ar_nazwa" />
+                <ScalarProperty Name="ar_liczba" ColumnName="ar_liczba" />
+                <ScalarProperty Name="ar_cena_netto" ColumnName="ar_cena_netto" />
+                <ScalarProperty Name="ar_cena_brutto" ColumnName="ar_cena_brutto" />
+                <ScalarProperty Name="ar_aud_data" ColumnName="ar_aud_data" />
+                <ScalarProperty Name="ar_aud_login" ColumnName="ar_aud_login" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dokument_artykul">
+            <EntityTypeMapping TypeName="col_dataModel.dokument_artykul">
+              <MappingFragment StoreEntitySet="dokument_artykul">
+                <ScalarProperty Name="nar_id" ColumnName="nar_id" />
+                <ScalarProperty Name="nar_ar_id" ColumnName="nar_ar_id" />
+                <ScalarProperty Name="nar_do_id" ColumnName="nar_do_id" />
+                <ScalarProperty Name="nar_aud_data" ColumnName="nar_aud_data" />
+                <ScalarProperty Name="nar_aud_login" ColumnName="nar_aud_login" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dokument_naglowek">
+            <EntityTypeMapping TypeName="col_dataModel.dokument_naglowek">
+              <MappingFragment StoreEntitySet="dokument_naglowek">
+                <ScalarProperty Name="do_id" ColumnName="do_id" />
+                <ScalarProperty Name="do_nazwa" ColumnName="do_nazwa" />
+                <ScalarProperty Name="do_data" ColumnName="do_data" />
+                <ScalarProperty Name="do_numer_klienta" ColumnName="do_numer_klienta" />
+                <ScalarProperty Name="do_cena_netto" ColumnName="do_cena_netto" />
+                <ScalarProperty Name="do_cena_brutto" ColumnName="do_cena_brutto" />
+                <ScalarProperty Name="do_aud_data" ColumnName="do_aud_data" />
+                <ScalarProperty Name="do_aud_login" ColumnName="do_aud_login" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="p_int_artkul_dodaj" FunctionName="col_dataModel.Store.p_int_artkul_dodaj" />
+          <FunctionImportMapping FunctionImportName="p_int_artkul_update" FunctionName="col_dataModel.Store.p_int_artkul_update" />
+          <FunctionImportMapping FunctionImportName="p_int_artkul_usun" FunctionName="col_dataModel.Store.p_int_artkul_usun" />
+          <FunctionImportMapping FunctionImportName="p_int_dokument_artkul_dodaj" FunctionName="col_dataModel.Store.p_int_dokument_artkul_dodaj" />
+          <FunctionImportMapping FunctionImportName="p_int_dokument_artykul_pobierz" FunctionName="col_dataModel.Store.p_int_dokument_artykul_pobierz">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="col_dataModel.p_int_dokument_artykul_pobierz_Result">
+                <ScalarProperty Name="do_id" ColumnName="do_id" />
+                <ScalarProperty Name="ar_id" ColumnName="ar_id" />
+                <ScalarProperty Name="ar_nazwa" ColumnName="ar_nazwa" />
+                <ScalarProperty Name="ar_liczba" ColumnName="ar_liczba" />
+                <ScalarProperty Name="ar_cena_brutto" ColumnName="ar_cena_brutto" />
+                <ScalarProperty Name="ar_cena_netto" ColumnName="ar_cena_netto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_int_dokument_dodaj" FunctionName="col_dataModel.Store.p_int_dokument_dodaj" />
+          <FunctionImportMapping FunctionImportName="p_int_dokument_pobierz" FunctionName="col_dataModel.Store.p_int_dokument_pobierz">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="col_dataModel.p_int_dokument_pobierz_Result">
+                <ScalarProperty Name="do_id" ColumnName="do_id" />
+                <ScalarProperty Name="do_nazwa" ColumnName="do_nazwa" />
+                <ScalarProperty Name="do_numer_klienta" ColumnName="do_numer_klienta" />
+                <ScalarProperty Name="do_cena_brutto" ColumnName="do_cena_brutto" />
+                <ScalarProperty Name="do_cena_netto" ColumnName="do_cena_netto" />
+                <ScalarProperty Name="do_data" ColumnName="do_data" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="p_int_dokument_update" FunctionName="col_dataModel.Store.p_int_dokument_update" />
+          <FunctionImportMapping FunctionImportName="p_int_dokument_usun" FunctionName="col_dataModel.Store.p_int_dokument_usun" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
