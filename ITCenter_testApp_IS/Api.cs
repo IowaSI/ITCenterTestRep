@@ -16,7 +16,7 @@ namespace ITCenter_testApp_IS
             log.Info("API: GetUserInfo");
 
             var productInformation = new ProductHeaderValue(user_name);
-            var credentials = new Credentials("b7614be81922f95cf38dadff85e5dcccc8e85ab6");
+            var credentials = new Credentials("5893ff5f8e432b98ebff5f78213369dabd32b4bddac3");
             var client = new GitHubClient(productInformation) { Credentials = credentials };
             var user = client.User.Get(user_name);
             
@@ -28,9 +28,9 @@ namespace ITCenter_testApp_IS
             log.Info("API: GetAppInfo");
 
             var productInformation = new ProductHeaderValue("IowaSI");
-            var credentials = new Credentials("b7614be81922f95cf38dadff85e5dcccc8e85ab6");
+            var credentials = new Credentials("2213");
             var client = new GitHubClient(productInformation) { Credentials = credentials };
-
+            //5893ff5f8e432b98ebff5f7869dabd32b4bddac3
             var user = client.Repository.Get("IowaSI", "ITCenterTestRep").Result;
 
             return user;

@@ -42,6 +42,7 @@ namespace ITCenter_testApp_IS
             catch(Exception ex)
             {
                 log.Error(ex.Message);
+                log.Error(ex.InnerException.Message);
             }
         }
 
@@ -49,13 +50,6 @@ namespace ITCenter_testApp_IS
         {
             try
             {
-                var app_data = Api.GetAppInfo();
-
-                lblAppData.Text = "RepoName:" + app_data.Name;
-                lblAppData.Text += Environment.NewLine + "Owner:" + app_data.Owner.Login;
-                lblAppData.Text += Environment.NewLine + "Created at:" + app_data.CreatedAt.ToString("yyyy-MM-dd");
-                lblAppData.Text += Environment.NewLine + "Ocena:" + app_data.StargazersCount;
-
                 expanded_master_rows_doki = new List<int>();
 
                 doki_model = DAO.p_int_dokument_pobierz(null);
@@ -67,6 +61,22 @@ namespace ITCenter_testApp_IS
             catch(Exception ex)
             {
                 log.Error(ex.Message);
+                log.Error(ex.InnerException.Message);
+            }
+
+            try
+            {
+                var app_data = Api.GetAppInfo();
+
+                lblAppData.Text = "RepoName:" + app_data.Name;
+                lblAppData.Text += Environment.NewLine + "Owner:" + app_data.Owner.Login;
+                lblAppData.Text += Environment.NewLine + "Created at:" + app_data.CreatedAt.ToString("yyyy-MM-dd");
+                lblAppData.Text += Environment.NewLine + "Ocena:" + app_data.StargazersCount;
+            }
+            catch(Exception ex)
+            {
+                log.Error(ex.Message);
+                log.Error(ex.InnerException.Message);
             }
         }
 
@@ -86,6 +96,7 @@ namespace ITCenter_testApp_IS
             catch(Exception ex)
             {
                 log.Error(ex.Message);
+                log.Error(ex.InnerException.Message);
             }
         }
 
@@ -104,6 +115,7 @@ namespace ITCenter_testApp_IS
             catch(Exception ex)
             {
                 log.Error(ex.Message);
+                log.Error(ex.InnerException.Message);
             }
         }
 
@@ -122,6 +134,7 @@ namespace ITCenter_testApp_IS
             catch(Exception ex)
             {
                 log.Error(ex.Message);
+                log.Error(ex.InnerException.Message);
             }
         }
 
@@ -129,12 +142,12 @@ namespace ITCenter_testApp_IS
         {
             try
             {
-
                 e.RelationCount = 1;
             }
             catch(Exception ex)
             {
                 log.Error(ex.Message);
+                log.Error(ex.InnerException.Message);
             }
         }
         
@@ -147,6 +160,7 @@ namespace ITCenter_testApp_IS
             catch(Exception ex)
             {
                 log.Error(ex.Message);
+                log.Error(ex.InnerException.Message);
             }
         }
  
@@ -161,6 +175,7 @@ namespace ITCenter_testApp_IS
             catch(Exception ex)
             {
                 log.Error(ex.Message);
+                log.Error(ex.InnerException.Message);
             }
         }
 
@@ -176,6 +191,7 @@ namespace ITCenter_testApp_IS
                 catch (Exception ex)
                 {
                     log.Error(ex.Message);
+                    log.Error(ex.InnerException.Message);
                 }
             }
             dok_edit = null;            
@@ -193,6 +209,7 @@ namespace ITCenter_testApp_IS
                 catch (Exception ex)
                 {
                     log.Error(ex.Message);
+                    log.Error(ex.InnerException.Message);
                 }
             }
             dok_edit = null;
@@ -211,6 +228,7 @@ namespace ITCenter_testApp_IS
                 catch (Exception ex)
                 {
                     log.Error(ex.Message);
+                    log.Error(ex.InnerException.Message);
                 }
             }
             art_edit = null;
@@ -228,6 +246,7 @@ namespace ITCenter_testApp_IS
                 catch (Exception ex)
                 {
                     log.Error(ex.Message);
+                    log.Error(ex.InnerException.Message);
                 }
             }
             art_edit = null;
@@ -266,6 +285,7 @@ namespace ITCenter_testApp_IS
             catch(Exception ex)
             {
                 log.Error(ex.Message);
+                log.Error(ex.InnerException.Message);
             }
         }
         
@@ -304,6 +324,7 @@ namespace ITCenter_testApp_IS
                 catch (Exception ex)
                 {
                     log.Error(ex.Message);
+                    log.Error(ex.InnerException.Message);
                 }
             }
         }
@@ -339,6 +360,7 @@ namespace ITCenter_testApp_IS
             catch (Exception ex)
             {
                 log.Error(ex.Message);
+                log.Error(ex.InnerException.Message);
             }
         }
 
@@ -370,6 +392,7 @@ namespace ITCenter_testApp_IS
                 catch (Exception ex)
                 {
                     log.Error(ex.Message);
+                    log.Error(ex.InnerException.Message);
                 }
             }
         }
@@ -381,33 +404,59 @@ namespace ITCenter_testApp_IS
 
         private void ExpandMasterRowDokiAfterCallback()
         {
-            foreach(var i in expanded_master_rows_doki)
+
+            try
             {
-                gridViewDoki.ExpandGroupRow(i);
+
+                foreach (var i in expanded_master_rows_doki)
+                {
+                    gridViewDoki.ExpandGroupRow(i);
+                }
+            }
+            catch(Exception ex)
+            {
+                log.Error(ex.Message);
+                log.Error(ex.InnerException.Message);
             }
         }
 
         private void gridViewDoki_MasterRowExpanded(object sender, DevExpress.XtraGrid.Views.Grid.CustomMasterRowEventArgs e)
         {
-            var view = (sender as DevExpress.XtraGrid.Views.Grid.GridView);
-            
-            int dataSourceRowIndex = view.GetDataSourceRowIndex(e.RowHandle);
-
-            if(expanded_master_rows_doki.Where(x => x.Equals(dataSourceRowIndex)).ToList().Count <=0 )
+            try
             {
-                expanded_master_rows_doki.Add(dataSourceRowIndex);
+                var view = (sender as DevExpress.XtraGrid.Views.Grid.GridView);
+
+                int dataSourceRowIndex = view.GetDataSourceRowIndex(e.RowHandle);
+
+                if (expanded_master_rows_doki.Where(x => x.Equals(dataSourceRowIndex)).ToList().Count <= 0)
+                {
+                    expanded_master_rows_doki.Add(dataSourceRowIndex);
+                }
+            }
+            catch(Exception ex)
+            {
+                log.Error(ex.Message);
+                log.Error(ex.InnerException.Message);
             }
         }
 
         private void gridViewDoki_MasterRowCollapsed(object sender, DevExpress.XtraGrid.Views.Grid.CustomMasterRowEventArgs e)
         {
-            var view = (sender as DevExpress.XtraGrid.Views.Grid.GridView);
-
-            int dataSourceRowIndex = view.GetDataSourceRowIndex(e.RowHandle);
-
-            if (expanded_master_rows_doki.Where(x => x.Equals(dataSourceRowIndex)).ToList().Count > 0)
+            try
             {
-                expanded_master_rows_doki.Remove(dataSourceRowIndex);
+                var view = (sender as DevExpress.XtraGrid.Views.Grid.GridView);
+
+                int dataSourceRowIndex = view.GetDataSourceRowIndex(e.RowHandle);
+
+                if (expanded_master_rows_doki.Where(x => x.Equals(dataSourceRowIndex)).ToList().Count > 0)
+                {
+                    expanded_master_rows_doki.Remove(dataSourceRowIndex);
+                }
+            }
+            catch(Exception ex)
+            {
+                log.Error(ex.Message);
+                log.Error(ex.InnerException.Message);
             }
         }
     }
