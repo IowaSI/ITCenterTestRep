@@ -170,7 +170,7 @@ namespace ITCenter_testApp_IS
             {
                 dok_edit = new p_int_dokument_pobierz();
                 EditDok(dok_edit, "Nowy dokument", AddNewDok);
-                ExpandMasterRowDokiAfterCallback();
+                //ExpandMasterRowDokiAfterCallback();
             }
             catch(Exception ex)
             {
@@ -404,10 +404,8 @@ namespace ITCenter_testApp_IS
 
         private void ExpandMasterRowDokiAfterCallback()
         {
-
             try
             {
-
                 foreach (var i in expanded_master_rows_doki)
                 {
                     gridViewDoki.ExpandGroupRow(i);
