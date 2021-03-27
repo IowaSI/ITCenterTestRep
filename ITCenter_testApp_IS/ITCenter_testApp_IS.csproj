@@ -94,6 +94,18 @@
     <Compile Include="dokument_naglowek.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="EditArtykulForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditArtykulForm.Designer.cs">
+      <DependentUpon>EditArtykulForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditDokForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditDokForm.Designer.cs">
+      <DependentUpon>EditDokForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="mainFor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +137,12 @@
     <Compile Include="p_int_dokument_pobierz_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="EditArtykulForm.resx">
+      <DependentUpon>EditArtykulForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditDokForm.resx">
+      <DependentUpon>EditDokForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="mainFor.resx">
       <DependentUpon>mainFor.cs</DependentUpon>
     </EmbeddedResource>

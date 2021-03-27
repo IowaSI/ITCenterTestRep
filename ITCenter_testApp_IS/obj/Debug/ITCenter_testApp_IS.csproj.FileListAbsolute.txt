@@ -1,3 +1,4 @@
+D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\log4net.config
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\ITCenter_testApp_IS.exe.config
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\ITCenter_testApp_IS.exe
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\ITCenter_testApp_IS.pdb
@@ -15,6 +16,8 @@ D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\DevExpress.
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\DevExpress.XtraPrinting.v20.2.dll
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\EntityFramework.dll
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\EntityFramework.SqlServer.dll
+D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\log4net.dll
+D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\Octokit.dll
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\DevExpress.Pdf.v20.2.Core.dll
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\DevExpress.Pdf.v20.2.Drawing.dll
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\DevExpress.RichEdit.v20.2.Core.dll
@@ -34,6 +37,8 @@ D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\DevExpress.
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\DevExpress.XtraPrinting.v20.2.xml
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\EntityFramework.xml
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\EntityFramework.SqlServer.xml
+D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\log4net.xml
+D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\Octokit.xml
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\DevExpress.Pdf.v20.2.Core.xml
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\DevExpress.Pdf.v20.2.Drawing.xml
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\DevExpress.RichEdit.v20.2.Core.xml
@@ -91,6 +96,9 @@ D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\de\DevExpre
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\es\DevExpress.Office.v20.2.Core.resources.dll
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\ja\DevExpress.Office.v20.2.Core.resources.dll
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\ru\DevExpress.Office.v20.2.Core.resources.dll
+D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\obj\Debug\ITCenter_testApp_IS.csprojAssemblyReference.cache
+D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\obj\Debug\ITCenter_testApp_IS.EditArtykulForm.resources
+D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\obj\Debug\ITCenter_testApp_IS.EditDokForm.resources
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\obj\Debug\ITCenter_testApp_IS.mainFor.resources
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\obj\Debug\ITCenter_testApp_IS.Properties.Resources.resources
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\obj\Debug\ITCenter_testApp_IS.csproj.GenerateResource.cache
@@ -99,9 +107,3 @@ D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\obj\Debug\ITCenter_te
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\obj\Debug\ITCenter_testApp_IS.csproj.CopyComplete
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\obj\Debug\ITCenter_testApp_IS.exe
 D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\obj\Debug\ITCenter_testApp_IS.pdb
-D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\obj\Debug\ITCenter_testApp_IS.csprojAssemblyReference.cache
-D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\log4net.dll
-D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\log4net.xml
-D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\log4net.config
-D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\Octokit.dll
-D:\vs2019\projekts\ITCenter_testApp_IS\ITCenter_testApp_IS\bin\Debug\Octokit.xml
